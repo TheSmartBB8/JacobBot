@@ -110,4 +110,3 @@ bot.on('message', message => {
 });
 
 
-bot.login("MjkxMjczMjI3NDU0MzgyMDgw.C6nFhQ.BPMtv1UYr7nLEstYDuTsNk64rbE");
