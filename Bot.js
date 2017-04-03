@@ -1,7 +1,7 @@
 
+
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-
 
 bot.on('ready', () => {
   console.log('I am ready!');
@@ -39,13 +39,6 @@ bot.on("guildMemberAdd", (member) => {
   member.guild.defaultChannel.sendMessage(`"${member.user.username}" has joined this server`);
 });
 
-
-
-bot.on('message', message => {
-  if (message.content === '$Bleach') {
-    message.reply("https://yt3.ggpht.com/-jkjn0Hn4StQ/AAAAAAAAAAI/AAAAAAAAAAA/a1psn8qLZoE/s900-c-k-no-mo-rj-c0xffffff/photo.jpg :regional_indicator_h: :regional_indicator_e: :regional_indicator_r: :regional_indicator_e: ")
-  }
-});
 
 bot.on('message', message => {
 if (message.content === 'Info') {
@@ -105,8 +98,28 @@ bot.on('message', message => {
 bot.on('message', message => {
 	if (message.content == '$servers') {
 		msg = message;
-		msg.channel.sendMessage(`__**${bot.user.username} is currently on the following servers:**__ \n\n${bot.guilds.map(g => `${g.name} - **${g.memberCount} Members**`).join(`\n`)}`, {split: true});
+		msg.channel.sendMessage(`__**${bot.user.username} is currently on the following servers:**__ \n\n${bot.guilds.map(g => `${g.name} - **${g.memberCount} Members**`).joined(`\n`)}`, {split: true});
 	}
 });
+
+bot.on('message', message => {
+  if(message.content.toLowerCase().startsWith('$kick')) {
+        if (hasRole(message.member, "Mod") || hasRole(message.member, "Owner")) {
+            message.guild.member(message.mentions.users.first()).kick();
+        } else {
+            message.channel.sendMessage("you do not have the role");
+        }
+    }
+});
+
+bot.on('message', message => {
+    if (message.content == '$insult2') {
+        var insultgenerator = require('insultgenerator');
+        insultgenerator(function(insult) {
+            console.log(insult);
+        });
+    }
+});
+
 
 
